@@ -1,0 +1,22 @@
+api_login_check:
+    path: /login_check
+
+devices:
+    type:     rest
+    resource: 'BankT\ApiBundle\Controller\DevicesController'
+    prefix:   /
+
+user:
+    type:     rest
+    resource: 'BankT\ApiBundle\Controller\UserController'
+    prefix:   /
+
+bankaccount:
+    type:     rest
+    resource: 'BankT\ApiBundle\Controller\BankaccountController'
+    prefix:   /
+
+connect:
+    type:     rest
+    resource: 'BankT\ApiBundle\Controller\ConnectController'
+    prefix:   /

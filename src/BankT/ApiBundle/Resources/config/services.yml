@@ -1,0 +1,26 @@
+services:
+    service.figo:
+        class: 'BankT\ApiBundle\Service\FigoService'
+        arguments: ["%figo_clientid%","%figo_clientsecret%","%figo_callbackurl%", "@security.token_storage"]
+    service.device:
+        class: 'BankT\ApiBundle\Service\DeviceService'
+        arguments: ["@doctrine.orm.default_entity_manager", "@security.token_storage"]
+    service.bankaccount:
+        class: 'BankT\ApiBundle\Service\BankaccountService'
+        arguments: ["@doctrine.orm.default_entity_manager", "@security.token_storage"]
+    service.user:
+        class: 'BankT\ApiBundle\Service\UserService'
+        arguments: ["@doctrine.orm.default_entity_manager", "@security.token_storage"]
+    service.event:
+        class: 'BankT\ApiBundle\Service\EventService'
+        arguments: ["@doctrine.orm.default_entity_manager"]
+    app.form.type.device:
+        class: 'BankT\ApiBundle\Form\DeviceForm'
+        arguments: ["@service.bankaccount"]
+        tags:
+            - { name: form.type  }
+    app.form.type.bankaccount:
+        class: 'BankT\ApiBundle\Form\BankaccountForm'
+        arguments: ["@service.device"]
+        tags:
+            - { name: form.type  }
